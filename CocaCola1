@@ -1,0 +1,90 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CocaCola1 extends JFrame implements ActionListener{
+
+ private JLabel label1, label2,label3, label4;
+ private JTextField textfield1;
+ private JButton boton1;
+ /*enlazar interfaces*/
+ public static String texto="";
+
+ public CocaCola1 (){
+  setLayout(null);
+  setTitle("Bienvenido/a");
+  setDefaultCloseOperation(EXIT_ON_CLOSE);
+  /*Color JFrame*/
+  getContentPane().setBackground(new Color(255,0,0));
+  /*icono CocaCola*/
+  setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
+
+  /*imagen CocaCola*/
+  ImageIcon imagen=new ImageIcon("images/logo-coca.png");
+
+  label1=new JLabel(imagen);
+  label1.setBounds(25,15,300,150);
+  add(label1);
+
+  label2=new JLabel("Sistema de Control Vacacional");
+  label2.setBounds(15,135,350,30);
+  label2.setFont(new Font("Andale Mono", 3, 18));
+  /*nombre fuente; 0 normal, 1 negrita, 2 cursiva, 3 negrita y cursiva; tamanio texto*/
+  label2.setForeground(new Color(255,255,255));
+  add(label2);
+
+  label3=new JLabel("Ingrese su nombre:");
+  label3.setBounds(45,212,200,30);
+  label3.setFont(new Font("Andale Mono", 1, 12));
+  label3.setForeground(new Color(255,255,255));
+  add(label3);
+
+  label4=new JLabel("(c)2017 The Coca-Cola Company");
+  label4.setBounds(85,375,300,30);
+  label4.setFont(new Font("Andale Mono", 1, 12));
+  label4.setForeground(new Color(255,255,255));
+  add(label4);
+
+  textfield1=new JTextField();
+  textfield1.setBounds(45,240,255,25);
+  textfield1.setBackground(new Color(224,224,224));
+  textfield1.setFont(new Font("Andale Mono", 1, 14));
+  textfield1.setForeground(new Color(255,0,0));
+  add(textfield1);
+
+  boton1=new JButton("Siguiente");
+  boton1.setBounds(125,280,125,30);
+  boton1.setFont(new Font("Andale Mono", 1, 14));
+  boton1.setForeground(new Color(255,0,0));
+  add(boton1);
+  boton1.addActionListener(this);
+ }
+
+ public void actionPerformed (ActionEvent e){
+  if(e.getSource()==boton1){
+   /*esta variable la hemos declarado arriba*/
+   texto=textfield1.getText().trim();
+   /*trim borra espacios al ppio del textfield*/
+   if(texto.equals("")){
+    JOptionPane.showMessageDialog(null, "Desbes insertar tu nombre");
+   } 
+   else{
+    CocaCola2 ventana=new CocaCola2();
+    ventana.setVisible(true);
+    ventana.setBounds(0,0,600,360);
+    ventana.setLocationRelativeTo(null);
+    ventana.setResizable(false);
+    this.setVisible(false);/*interfaz CocaCola1*/
+   }
+  }
+ }
+
+ public static void main(String args[]){
+  CocaCola1 ventana=new CocaCola1();
+  ventana.setBounds(0,0,380,450);
+  ventana.setVisible(true);
+  ventana.setLocationRelativeTo(null);
+  ventana.setResizable(true);
+ }
+
+}
