@@ -1,0 +1,111 @@
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CocaCola2 extends JFrame implements ActionListener, ChangeListener{
+
+ private JLabel label1, label2;
+ private JTextArea textarea1;
+ private JCheckBox check1;
+ private JScrollPane scrollpane1;
+ private JButton button1, button2;
+ /*esta variable alojara la variable texto de la interfaz CocaCola1*/
+ String nombre="";
+
+ public CocaCola2 (){
+  setLayout(null);
+  setDefaultCloseOperation(EXIT_ON_CLOSE);
+  setTitle("Licencia de uso");
+  setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
+
+  /*recuperar el valor de la variable texto aqui*/
+  CocaCola1 ventanaCocaCola1=new CocaCola1();
+  nombre=ventanaCocaCola1.texto;
+
+  label1=new JLabel("TERMINOS Y CONDICIONES");
+  label1.setBounds(215,5,200,30);
+  label1.setFont(new Font("Andale Mono",1,14));
+  add(label1);
+
+  /*logo inferior de la CocaCola*/
+  ImageIcon imagen=new ImageIcon("images/coca-cola.png");
+  label2=new JLabel(imagen);
+  label2.setBounds(300,130,300,300);
+  add(label2);
+
+  /*el textarea se adapta al scrollpane*/
+  textarea1=new JTextArea();
+  textarea1.setEditable(false);
+  textarea1.setFont(new Font("Andale Mono",0,9));
+  textarea1.setText("\n\n          TERMINOS Y CONDICIONES"+
+  "\n\n          A. PROHIBIDA SU VENTA O DISTRIBUICION SIN AUTORIZACION DE LA GEEKIPEDIA."+
+  "\n          B. PROHIBIDA LA ALTERACION DEL CODIGO FUENTE O DISENIO DE LAS INTERFACES."+
+  "\n          C. LA GEEKIPEDIA DE ERNESTO NO SE HACE RESPONSABLE DEL MAL USO DE ESTE SOFTWARE"+
+  "\n\n          ACUERDOS LEGALES"+
+  "\n          LOS AUTORES NO SE RESPONSABILIZAN DEL USO QUE USTED HAGA CON ESTE SOFTWARE"+
+  "\n          SI USTED NO ACEPTA LOS TERMINOS, HAGA CLIC EN (NO ACEPTO) Y NO UTILICE ESTE SOFTWARE"+
+  "\n\n          PARA MAYOR INFORMACION POR FAVOR VISITE:"+
+  "\n          http://www.youtube.com/ernestoperezm");
+
+  scrollpane1=new JScrollPane(textarea1);
+  scrollpane1.setBounds(10,40,575,200);
+  add(scrollpane1);
+
+  check1=new JCheckBox("Yo "+nombre+" acepto");
+  check1.setBounds(10,250,300,30);
+  check1.addChangeListener(this);
+  add(check1);
+
+  button1=new JButton("Continuar");
+  button1.setBounds(10,290,100,30);
+  button1.addActionListener(this);
+  button1.setEnabled(false);
+  add(button1);
+
+  button2=new JButton("No acepto");
+  button2.setBounds(120,290,100,30);
+  button2.addActionListener(this);
+  button2.setEnabled(true);
+  add(button2);
+ }
+
+ public void stateChanged (ChangeEvent e){
+  if(check1.isSelected()==true){
+   button1.setEnabled(true);
+   button2.setEnabled(false);
+  }
+  else{
+   button1.setEnabled(false);
+   button2.setEnabled(true);
+  }
+ }
+
+ public void actionPerformed (ActionEvent e){
+  if(e.getSource()==button1){
+   CocaCola3 ventana=new CocaCola3();
+   ventana.setVisible(true);
+   ventana.setResizable(true);
+   ventana.setLocationRelativeTo(null);
+   ventana.setBounds(0,0,700,600);
+   this.setVisible(false);
+  }
+  if(e.getSource()==button2){
+   CocaCola1 ventana=new CocaCola1();
+   ventana.setBounds(0,0,380,450);
+   ventana.setVisible(true);
+   ventana.setLocationRelativeTo(null);
+   ventana.setResizable(true);
+   this.setVisible(false);
+  }
+ }
+
+ public static void main(String args[]){
+  CocaCola2 ventana=new CocaCola2();
+  ventana.setVisible(true);
+  ventana.setBounds(0,0,600,360);
+  ventana.setLocationRelativeTo(null);
+  ventana.setResizable(false);
+ }
+
+}
