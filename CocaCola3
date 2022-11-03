@@ -1,0 +1,269 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class CocaCola3 extends JFrame implements ActionListener{
+ private JMenuBar menubar;
+ private JMenu menu1, menu2, menu3, menu11;
+ private JMenuItem menuitem111, menuitem112, menuitem113, menuitem12, menuitem13, menuitem21, menuitem31;
+ private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9, label10;
+ private JTextField  textfield1, textfield2, textfield3;
+ private JTextArea textarea4;
+ private JComboBox combo1, combo2;
+ String nombreAdministrador="";
+
+ public CocaCola3(){
+  setLayout(null);
+  setDefaultCloseOperation(EXIT_ON_CLOSE);
+  setTitle("Pantalla principal");
+  getContentPane().setBackground(new Color(255,0,0));
+  setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
+  CocaCola1 ventanaCocaCola1=new CocaCola1();
+  nombreAdministrador=ventanaCocaCola1.texto;
+
+  menubar=new JMenuBar();
+  setJMenuBar(menubar);
+  menubar.setBackground(new Color(255,0,0));
+
+  menu1=new JMenu("Opciones");
+  menu1.setForeground(new Color(255,255,255));
+  menubar.add(menu1);
+
+  menu2=new JMenu("Calcular");
+  menu2.setForeground(new Color(255,255,255));
+  menu2.setBackground(new Color(255,0,0));
+  menubar.add(menu2);
+
+  menuitem21=new JMenuItem("Vacaciones");
+  menuitem21.setForeground(new Color(255,0,0));
+  menuitem21.addActionListener(this);
+  menu2.add(menuitem21);
+
+  menu3=new JMenu("Acerca de");
+  menu3.setForeground(new Color(255,255,255));
+  menu3.setBackground(new Color(255,0,0));
+  menubar.add(menu3);
+
+  menuitem31=new JMenuItem("El creador");
+  menuitem31.setForeground(new Color(255,0,0));
+  menuitem31.addActionListener(this);
+  menu3.add(menuitem31);
+
+  menu11=new JMenu("Color de fondo");
+  menu11.setForeground(new Color(255,0,0));
+  menu1.add(menu11);
+
+  menuitem111=new JMenuItem("Rojo");
+  menuitem111.setForeground(new Color(255,0,0));
+  menuitem111.addActionListener(this);
+  menu11.add(menuitem111);
+
+  menuitem112=new JMenuItem("Negro");
+  menuitem112.setForeground(new Color(255,0,0));
+  menuitem112.addActionListener(this);
+  menu11.add(menuitem112);
+
+  menuitem113=new JMenuItem("Morado");
+  menuitem113.setForeground(new Color(255,0,0));
+  menuitem113.addActionListener(this);
+  menu11.add(menuitem113);
+
+  menuitem12=new JMenuItem("Nuevo");
+  menuitem12.setForeground(new Color(255,0,0));
+  menuitem12.addActionListener(this);
+  menu1.add(menuitem12);
+
+  menuitem13=new JMenuItem("Salir");
+  menuitem13.setForeground(new Color(255,0,0));
+  menuitem13.addActionListener(this);
+  menu1.add(menuitem13);
+
+/*------------------------------------*/
+
+  ImageIcon imagen=new ImageIcon("images/logo-coca.png");
+  label1=new JLabel(imagen);
+  label1.setBounds(10,10,300,150);
+  add(label1);
+
+  label2=new JLabel("Bienvenido "+nombreAdministrador);
+  label2.setFont(new Font("Arial",1,26));
+  label2.setForeground(new Color(255,255,255));
+  label2.setBounds(350,75,150,30);
+  add(label2);
+
+  label3=new JLabel("Datos del trabajador para el calculo de vacaciones");
+  label3.setFont(new Font("Arial",1,20));
+  label3.setForeground(new Color(255,255,255));
+  label3.setBounds(100,160,500,30);
+  add(label3);
+
+  label4=new JLabel("Nombre completo:");
+  label4.setFont(new Font("Arial",1,12));
+  label4.setForeground(new Color(255,255,255));
+  label4.setBounds(30,250,150,10);
+  add(label4);
+
+  label5=new JLabel("Apellido Paterno:");
+  label5.setFont(new Font("Arial",1,12));
+  label5.setForeground(new Color(255,255,255));
+  label5.setBounds(30,300,150,10);
+  add(label5);
+
+  label6=new JLabel("Apellido Materno:");
+  label6.setFont(new Font("Arial",1,12));
+  label6.setForeground(new Color(255,255,255));
+  label6.setBounds(30,350,150,10);
+  add(label6);
+
+  label7=new JLabel("Selecciona el Departamento:");
+  label7.setFont(new Font("Arial",1,12));
+  label7.setForeground(new Color(255,255,255));
+  label7.setBounds(250,250,200,10);
+  add(label7);
+
+  label8=new JLabel("Selecciona la Antiguedad:");
+  label8.setFont(new Font("Arial",1,12));
+  label8.setForeground(new Color(255,255,255));
+  label8.setBounds(250,300,150,10);
+  add(label8);
+
+  label9=new JLabel("Resultado del Calculo:");
+  label9.setFont(new Font("Arial",1,12));
+  label9.setForeground(new Color(255,255,255));
+  label9.setBounds(250,350,150,10);
+  add(label9);
+
+  label10=new JLabel("(c)2017 The Coca-Cola Company | Todos los derechos reservados");
+  label10.setFont(new Font("Arial",1,12));
+  label10.setForeground(new Color(255,255,255));
+  label10.setBounds(200,550,300,10);
+  add(label10);
+
+  /*---------------------------------*/
+
+  textfield1=new JTextField(); /*nombre*/
+  textfield1.setBounds(30,270,175,20);
+  add(textfield1);
+
+  textfield2=new JTextField(); /*apellido paterno*/
+  textfield2.setBounds(30,320,175,20);
+  add(textfield2);
+
+  textfield3=new JTextField(); /*apellido materno*/
+  textfield3.setBounds(30,370,175,20);
+  add(textfield3);
+
+  textarea4=new JTextArea("Aqui aparece el resultado del calculo de las vacaciones.");
+  textarea4.setFont(new Font("Arial",1,10));
+  textarea4.setForeground(new Color(255,0,0));
+  textarea4.setBounds(250,370,350,80);
+  add(textarea4);
+
+  /*---------------------------------------------*/
+
+  combo1=new JComboBox();
+  combo1.setBounds(250,270,175,20);
+  combo1.setForeground(new Color(255,0,0));
+  add(combo1);
+  combo1.addItem("");
+  combo1.addItem("Atencion al cliente");
+  combo1.addItem("Departamento de Logistica");
+  combo1.addItem("Departamento de Gerencia");
+  
+  combo2=new JComboBox();
+  combo2.setBounds(250,320,175,20);
+  combo2.setForeground(new Color(255,0,0));
+  combo2.addItem("");
+  combo2.addItem("1 anio");
+  combo2.addItem("2-6 anios");
+  combo2.addItem("mas de 7 anios");
+  add(combo2);
+ }
+
+ public void actionPerformed (ActionEvent e) {
+  if(e.getSource()==menuitem21){
+   String nombreCompleto=textfield1.getText();
+   String apellidoPaterno=textfield2.getText();
+   String apellidoMaterno=textfield3.getText();
+   String departamento=combo1.getSelectedItem().toString();
+   String antiguedad=combo2.getSelectedItem().toString();
+
+   if(nombreCompleto.equals("")||apellidoPaterno.equals("")||apellidoMaterno.equals("")||departamento.equals("")||antiguedad.equals("")){
+    JOptionPane.showMessageDialog(null,"Debes de llenar todos los campos");
+   }
+   else{
+    if(departamento.equals("Atencion al cliente")){
+     if(antiguedad.equals("1 anio")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 6 dias de vacaciones.");
+     }
+     if(antiguedad.equals("2-6 anios")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 14 dias de vacaciones.");
+     }
+     if(antiguedad.equals("mas de 7 anios")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 20 dias de vacaciones.");
+     }
+    }
+    if(departamento.equals("Departamento de Logistica")){
+     if(antiguedad.equals("1 anio")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 7 dias de vacaciones.");
+     }
+     if(antiguedad.equals("2-6 anios")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 15 dias de vacaciones.");
+     }
+     if(antiguedad.equals("mas de 7 anios")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 22 dias de vacaciones.");
+     }
+    }
+    if(departamento.equals("Departamento de Gerencia")){
+     if(antiguedad.equals("1 anio")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 10 dias de vacaciones.");
+     }
+     if(antiguedad.equals("2-6 anios")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 20 dias de vacaciones.");
+     }
+     if(antiguedad.equals("mas de 7 anios")){
+      textarea4.setText("\n El trabajador "+nombreCompleto+" "+apellidoPaterno+" "+apellidoMaterno+" que labora en \n "+departamento+" con "+antiguedad+" de antiguedad, \n recibe 30 dias de vacaciones.");
+     }
+    } 
+   }
+  }
+  if(e.getSource()==menuitem111){
+   getContentPane().setBackground(new Color(255,0,0));
+  }
+  if(e.getSource()==menuitem112){
+   getContentPane().setBackground(new Color(0,0,0));
+  }
+  if(e.getSource()==menuitem113){
+   getContentPane().setBackground(new Color(51,0,51));
+  }
+  if(e.getSource()==menuitem12){
+   textfield1.setText("");
+   textfield2.setText("");
+   textfield3.setText("");
+   combo1.setSelectedItem(0);
+   combo2.setSelectedItem(0);
+   textarea4.setText("Aqui aparece el resultado del calculo de las vacaciones.");
+  }
+  if(e.getSource()==menuitem13){
+   CocaCola1 ventana=new CocaCola1();
+   ventana.setBounds(0,0,380,450);
+   ventana.setVisible(true);
+   ventana.setLocationRelativeTo(null);
+   ventana.setResizable(true);
+   this.setVisible(false);
+  }
+  if(e.getSource()==menuitem31){
+   JOptionPane.showMessageDialog(null,"Desarrollado por La Geekipedia de Ernesto\n"+"www.youtube.com/ErnestoPerezM");
+  }
+ }
+
+ public static void main(String args[]){
+  CocaCola3 ventana=new CocaCola3();
+  ventana.setBounds(0,0,700,600);
+  ventana.setVisible(true);
+  ventana.setResizable(true);
+  ventana.setLocationRelativeTo(null);
+
+ }
+
+}
